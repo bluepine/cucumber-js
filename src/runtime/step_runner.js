@@ -8,7 +8,7 @@ const {beginTiming, endTiming} = Time
 
 async function run({attachmentManager, defaultTimeout, scenarioResult, step, stepDefinition, transformLookup, world}) {
   beginTiming()
-  const parameters = stepDefinition.getInvocationParameters({scenarioResult, step, transformLookup})
+  const parameters = await Promise.all(stepDefinition.getInvocationParameters({scenarioResult, step, transformLookup}))
   const timeoutInMilliseconds = stepDefinition.options.timeout || defaultTimeout
 
   let error, result
